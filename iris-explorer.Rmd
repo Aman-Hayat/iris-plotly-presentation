@@ -1,0 +1,77 @@
+---
+title: "Three flowers, two measurements"
+author: "Mohammad Aman Hayat"
+date: "25 October 2026"
+output:
+  html_document:
+    css: styles.css
+    self_contained: true
+---
+
+::: {.slide .cover}
+
+## Three flowers, two measurements
+
+The iris dataset, seen through its petals.
+
+**25 October 2026** · Mohammad Aman Hayat
+
+:::
+
+::: {.slide}
+
+## A small dataset with a clear question
+
+The built-in `iris` dataset records four measurements for **150 flowers**, split equally across three species. Can two petal measurements separate them?
+
+**150** flowers &nbsp;&nbsp; **3** species &nbsp;&nbsp; **2** petal measurements in this view
+
+:::
+
+::: {.slide}
+
+## Explore the petals
+
+Hover to inspect a flower. Click a species in the legend to show or hide it. Drag to zoom; double-click to reset.
+
+```{r plotly-iris, echo=FALSE, message=FALSE, warning=FALSE}
+library(plotly)
+
+colors <- c(setosa = "#52d6b5", versicolor = "#ffae70", virginica = "#a78bfa")
+p <- plot_ly()
+for (species in levels(iris$Species)) {
+  flowers <- iris[iris$Species == species, ]
+  p <- add_markers(
+    p,
+    x = flowers$Petal.Length, y = flowers$Petal.Width,
+    name = species, marker = list(color = colors[[species]], size = 11,
+                                   opacity = 0.78, line = list(color = "#17233b", width = 0.6)),
+    text = paste0("<b>", species, "</b><br>Petal length: ", flowers$Petal.Length,
+                  " cm<br>Petal width: ", flowers$Petal.Width, " cm"),
+    hoverinfo = "text"
+  )
+}
+p <- layout(
+  p, paper_bgcolor = "#111b30", plot_bgcolor = "#111b30",
+  font = list(color = "#eaf0fb", family = "Arial"),
+  xaxis = list(title = "Petal length (cm)", gridcolor = "#29374f", zeroline = FALSE),
+  yaxis = list(title = "Petal width (cm)", gridcolor = "#29374f", zeroline = FALSE),
+  legend = list(orientation = "h", x = 0, y = 1.15),
+  margin = list(l = 65, r = 20, t = 54, b = 60)
+)
+config(p, displaylogo = FALSE, responsive = TRUE)
+```
+
+:::
+
+::: {.slide}
+
+## The pattern is in the petals
+
+**Setosa stands apart.** Its petals occupy the lower-left cluster, while versicolor and virginica overlap near the middle.
+
+Two measurements tell most of the story, but the overlap is a useful reminder: a scatterplot reveals ambiguity as well as separation.
+
+Source: R's built-in `iris` dataset. Chart: Plotly for R.
+
+:::
