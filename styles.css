@@ -1,0 +1,15 @@
+:root{color-scheme:dark}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{margin:0;background:#0b1324;color:#eaf0fb;font-family:Arial,Helvetica,sans-serif}
+.main-container{max-width:none!important;padding:0!important;margin:0!important}
+.slide{box-sizing:border-box;min-height:100vh;padding:clamp(2rem,7vw,7rem);display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;background:radial-gradient(circle at 85% 20%,#1d3452 0,transparent 35%),#0b1324}
+.slide:nth-of-type(even){background:radial-gradient(circle at 12% 85%,#23334f 0,transparent 35%),#101b30}
+.slide h2{font-size:clamp(2.7rem,6vw,6rem);line-height:1.04;max-width:950px;letter-spacing:-.055em;margin:0 0 1.8rem;color:#f5f8ff}
+.slide p{font-size:clamp(1.2rem,2.2vw,1.8rem);line-height:1.5;max-width:900px;color:#c5d1e4}
+.slide strong{color:#61dfbd}
+.cover h2{font-size:clamp(3.8rem,8vw,8rem)}
+.cover p:last-child{margin-top:3rem;font-size:1rem;letter-spacing:.07em;text-transform:uppercase}
+.slide .html-widget{width:100%!important;max-width:1100px;min-height:440px}
+.slide .plotly{height:60vh!important;min-height:440px}
+.slide:last-of-type p:last-child{font-size:1rem;margin-top:3rem;color:#91a6c1}
+@media(max-width:650px){.slide{padding:2rem}.slide .plotly{height:55vh!important;min-height:360px}}
